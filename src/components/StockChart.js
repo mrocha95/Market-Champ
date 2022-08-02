@@ -2,41 +2,99 @@
 // import './App.css';
 import React from "react";
 import axios from "axios";
+import Chart from "react-apexcharts";
+import Posts from "./Posts";
+import { useParams } from "react-router-dom";
 
 function StockChart(props) {
   // console.log(params);
-  const [data, setData] = React.useState({});
-  const [time, setTime] = React.useState("6m");
+  // const [data, setData] = React.useState({});
+  const [ticker, setTicker] = React.useState("");
+  const [currentPrice, setCurrentPrice] = React.useState("");
+  const [series, setSeries] = React.useState([{ data: [] }]);
+  const [timespan, setTimespan] = React.useState("6m");
+
+  const params = useParams();
+
+  console.log("params", params);
 
   const displayData = async () => {
     let response = await axios.get(
-      `http://localhost:4000/data/${props.ticker}/${time}`
+      `http://localhost:4000/data/${params.input}/${timespan}`
     );
-    setData(response.data);
-    console.log(response.data);
+    // setData(response.data.results);
+    setTicker(response.data.ticker);
+    setCurrentPrice(response.data.results[response.data.results.length - 1].c);
+    // setSeries({
+    //   data: response.data.results.map(function (index) {
+    //     return [index.t, [index.o, index.h, index.l, index.c]];
+    //   }),
+    // });
+
+    const prices = response.data.results.map((index) => ({
+      x: index.t,
+      y: [index.o, index.h, index.l, index.c],
+    }));
+    setSeries([
+      {
+        data: prices,
+      },
+    ]);
+    // console.log(response.data.results);
   };
 
+  // console.log(series);
   React.useEffect(
     function () {
-      if (props.ticker) {
-        displayData();
-      }
+      displayData();
+      // if (props.ticker) {
+
+      // }
     },
-    [props.ticker]
+    [params, timespan]
   );
 
-  const height = 700;
-  const width = 900;
-  const margin = { left: 0, right: 48, top: 0, bottom: 24 };
+  const chart = {
+    options: {
+      chart: {
+        type: "candlestick",
+        // height: 350,
+      },
+      // title: {
+      //   text: props.ticker,
+      //   align: "left",
+      // },
+      xaxis: {
+        type: "datetime",
+      },
+      yaxis: {
+        tooltip: {
+          enabled: true,
+        },
+      },
+    },
+  };
 
   return (
     <div className="StockChart">
-      <h1>{data.ticker}</h1>
-      <button>1d</button>
-      <button>1w</button>
-      <button>1m</button>
-      <button>6m</button>
-      <button>1y</button>
+      <h1>{currentPrice && ticker}</h1>
+      <p>{currentPrice}</p>
+      {series && (
+        <Chart
+          options={chart.options}
+          series={series}
+          type="candlestick"
+          width="100%"
+          height={320}
+        />
+      )}
+      <button onClick={() => setTimespan("1d")}>1d</button>
+      <button onClick={() => setTimespan("1w")}>1w</button>
+      <button onClick={() => setTimespan("1m")}>1m</button>
+      <button onClick={() => setTimespan("6m")}>6m</button>
+      <button onClick={() => setTimespan("1y")}>1y</button>
+
+      <Posts ticker={ticker} />
     </div>
   );
 }
