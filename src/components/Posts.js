@@ -24,8 +24,10 @@ function Posts(props) {
           content: content,
           date: new Date().toLocaleString(),
         });
-        console.log(response);
-        navigate(`/stockchart/${props.ticker}`);
+        // console.log(r);
+        setContent("");
+        getComments();
+        // navigate(`/stockchart/${props.ticker}`);
       }
     } catch (err) {
       setStatus("Something went wrong");
@@ -67,7 +69,13 @@ function Posts(props) {
         comments.map(function (comment) {
           return (
             <div key={comment._id}>
-              <h3>{comment.creatorId.username}</h3>
+              {comment.creatorId ? (
+                <Link to={`/view-profile/${comment.creatorId._id}`}>
+                  <h3>@{comment.creatorId.username}</h3>
+                </Link>
+              ) : (
+                <h3>@[deleted_user]</h3>
+              )}
               <p>{comment.content}</p>
               <p>{comment.date}</p>
             </div>

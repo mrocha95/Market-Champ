@@ -9,6 +9,10 @@ import StockChart from "./components/StockChart";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 import { get } from "./services/service";
 import ViewProfile from "./components/ViewProfile";
+import MyProfile from "./components/MyProfile";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [input, setInput] = React.useState("");
@@ -43,6 +47,10 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/stockchart/:input" element={<StockChart />} />
         <Route path="/view-profile/:userId" element={<ViewProfile />} />
+        <Route path="/my-profile" element={<MyProfile />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </div>
   );

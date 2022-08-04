@@ -37,6 +37,61 @@
   }
 } */
 
-.Navbar {
+.App {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar {
   background-color: #076AE0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.search {
+  width: 300px;
+  margin:20px;
+}
+
+.search > input {
+  width: 70%;
+  height: 100%;
+  border-radius: 2%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+.search > button {
+  width: 22%;
+  height: 120%;
+  border-radius: 2%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #076AE0;
+  background-color: white;
+  font-weight: bold;
+}
+
+.log {
+  display: flex;
+  flex-direction: row;
+}
+
+.log > a {
+  margin-top:10px;
+  margin-bottom: 10px;
+  border-right-style: solid;
+  border-color: white;
+  border-width: 5%;
+  /* border-right: 40px; */
+}
+
+.log > button {
+  margin:20px 10px;
+  height: 50%;
+  border-radius: 2%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #076AE0;
+  background-color: white;
+  font-weight: bold;
+  
 }

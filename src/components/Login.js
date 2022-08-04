@@ -21,6 +21,7 @@ const Login = () => {
         });
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", response.data.username);
+        localStorage.setItem("profilePicture", response.data.profilePicture);
         if (response.data.message) {
           setStatus(response.data.message);
         } else {

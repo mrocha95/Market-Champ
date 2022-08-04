@@ -29,6 +29,7 @@ function Signup() {
         let response = await post("/users/signup", {
           username: username,
           password: password,
+          profilePic: imgUrl,
         });
         console.log(response);
         localStorage.setItem("token", response.data.token);
