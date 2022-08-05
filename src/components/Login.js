@@ -1,6 +1,7 @@
 import React from "react";
 import { post } from "../services/service";
 import { useParams, useNavigate } from "react-router-dom";
+import stonks from "../assets/stonks.jpg";
 
 const Login = () => {
   const [username, setUsername] = React.useState("");
@@ -34,18 +35,20 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Log In</h2>
+    <div className="login">
+      <img src={stonks} alt="stonks" height="200px" />
       <form onSubmit={create}>
-        <label>username</label>
+        <label>Username</label>
         <input
           type="text"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label>password</label>
+        <label>Password</label>
         <input
           type="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

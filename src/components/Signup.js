@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { post } from "../services/service";
 import { type } from "@testing-library/user-event/dist/type";
+import bull from "../assets/bull.jpg";
 
 function Signup() {
   const [username, setUsername] = React.useState("");
@@ -56,7 +57,8 @@ function Signup() {
   };
 
   return (
-    <div>
+    <div className="signup">
+      <img src={bull} alt="bull" height="200px" />
       <form onSubmit={create}>
         <label>Username</label>
         <input
@@ -67,13 +69,17 @@ function Signup() {
         ></input>
         <label>Password</label>
         <input
-          type="string"
+          type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <label>Profile pic</label>
-        <input type="file" onChange={handleFileUpload} />
+        <label>Profile Picture</label>
+        <input
+          type="file"
+          onChange={handleFileUpload}
+          className="file-upload"
+        />
         <button type="submit" disabled={loading}>
           Sign Up
         </button>

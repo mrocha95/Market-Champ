@@ -39,7 +39,15 @@
 
 .App {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-around; */
 }
+
+/* .bottom {
+  flex-grow:1;
+  justify-content: flex-end;
+} */
 
 .navbar {
   background-color: #076AE0;
@@ -79,10 +87,15 @@
 .log > a {
   margin-top:10px;
   margin-bottom: 10px;
-  border-right-style: solid;
+  /* border-right-style: solid;
   border-color: white;
-  border-width: 5%;
+  border-width: 5%; */
   /* border-right: 40px; */
+}
+
+a {
+  text-decoration: none;
+  color: #076AE0;
 }
 
 .log > button {
@@ -93,5 +106,203 @@
   color: #076AE0;
   background-color: white;
   font-weight: bold;
-  
+}
+
+.roundImage {
+  border-radius: 50%;
+}
+
+/* .button {
+  margin:20px 10px;
+  height: 50%;
+  border-radius: 2%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #076AE0;
+  background-color: white;
+  font-weight: bold;
+} */
+
+.home {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 50px;
+}
+
+.home-left > p {
+  font-size: 20px;
+}
+
+.home-left > button {
+  padding: 10px 20px;
+  margin:20px 10px;
+  height: 50%;
+  border-radius: 5%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #076AE0;
+  font-weight: bold;
+}
+.home-left > button > a {
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main {
+  height: 100vh;
+}
+
+footer {
+  border:solid;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+  background-color: #076AE0;
+  height: 100px;
+  width: 100%;
+  margin:0px;
+  padding:0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* position: absolute;
+  bottom: 0%; */
+}
+
+footer > div > a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin:15px 0px 0px 0px;
+}
+
+footer > small {
+  margin-top: 15px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login > form > label {
+  margin:10px;
+}
+
+.login > form > button {
+  padding: 10px 20px;
+  margin:20px 10px;
+  height: 50%;
+  border-radius: 5%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #076AE0;
+  font-weight: bold;
+  color: white;
+}
+
+.login > img {
+  margin:10px;
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup > form > label {
+  margin:10px;
+}
+
+.signup > form > button {
+  padding: 10px 20px;
+  margin:20px 10px;
+  height: 50%;
+  border-radius: 5%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #076AE0;
+  font-weight: bold;
+  color: white;
+}
+
+.signup > img {
+  margin:10px;
+}
+
+.file-upload {
+  margin-left: 60px;
+}
+
+.signup > img {
+  border-radius:50%;
+}
+
+.stock-chart {
+  margin:30px;
+}
+
+.stock-chart > h1 > span {
+  font-weight: normal;
+}
+
+.button-container {
+  /* width: 100vw; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.posts > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-profile > img {
+  background-color: #076AE0;
+  margin-top: 10px;
+  border-radius: 50%;
+}
+
+.view-profile > img {
+  background-color: #076AE0;
+  margin-top: 10px;
+  border-radius: 50%;
 }

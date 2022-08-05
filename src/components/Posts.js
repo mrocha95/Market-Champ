@@ -48,15 +48,15 @@ function Posts(props) {
   }, [props.ticker]);
 
   return (
-    <div className="Posts">
-      <h1>Posts: {props.ticker}</h1>
+    <div className="posts">
+      <h2>Posts</h2>
 
       {localStorage.length !== 0 && (
         <form onSubmit={create}>
-          <label>Create your post</label>
+          {/* <label>Create your post</label> */}
           <textarea
-            columns={40}
-            rows={10}
+            columns={60}
+            rows={4}
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
@@ -69,6 +69,7 @@ function Posts(props) {
         comments.map(function (comment) {
           return (
             <div key={comment._id}>
+              <hr></hr>
               {comment.creatorId ? (
                 <Link to={`/view-profile/${comment.creatorId._id}`}>
                   <h3>@{comment.creatorId.username}</h3>
@@ -78,6 +79,7 @@ function Posts(props) {
               )}
               <p>{comment.content}</p>
               <p>{comment.date}</p>
+              <hr></hr>
             </div>
           );
         })}

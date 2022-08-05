@@ -5,6 +5,7 @@ import axios from "axios";
 import Chart from "react-apexcharts";
 import Posts from "./Posts";
 import { useParams } from "react-router-dom";
+import { get, post, remove } from "../services/service";
 
 function StockChart(props) {
   // console.log(params);
@@ -19,9 +20,7 @@ function StockChart(props) {
   console.log("params", params);
 
   const displayData = async () => {
-    let response = await axios.get(
-      `http://localhost:4000/data/${params.input}/${timespan}`
-    );
+    let response = await get(`/data/${params.input}/${timespan}`);
     // setData(response.data.results);
     setTicker(response.data.ticker);
     setCurrentPrice(response.data.results[response.data.results.length - 1].c);
@@ -76,9 +75,10 @@ function StockChart(props) {
   };
 
   return (
-    <div className="StockChart">
-      <h1>{currentPrice && ticker}</h1>
-      <p>{currentPrice}</p>
+    <div className="stock-chart">
+      <h1>
+        {currentPrice && ticker} <span>{currentPrice}</span>
+      </h1>
       {series && (
         <Chart
           options={chart.options}
@@ -88,11 +88,13 @@ function StockChart(props) {
           height={320}
         />
       )}
-      <button onClick={() => setTimespan("1d")}>1d</button>
-      <button onClick={() => setTimespan("1w")}>1w</button>
-      <button onClick={() => setTimespan("1m")}>1m</button>
-      <button onClick={() => setTimespan("6m")}>6m</button>
-      <button onClick={() => setTimespan("1y")}>1y</button>
+      <div className="button-container">
+        <button onClick={() => setTimespan("1d")}>1d</button>
+        <button onClick={() => setTimespan("1w")}>1w</button>
+        <button onClick={() => setTimespan("1m")}>1m</button>
+        <button onClick={() => setTimespan("6m")}>6m</button>
+        <button onClick={() => setTimespan("1y")}>1y</button>
+      </div>
 
       <Posts ticker={ticker} />
     </div>

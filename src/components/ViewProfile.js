@@ -37,15 +37,23 @@ const ViewProfile = () => {
   };
 
   return user ? (
-    <div>
-      <img src={user.profilePic || defaultImage} alt="profile" height="200px" />
-      <h2>{user.username}'s profile</h2>
+    <div className="view-profile">
+      <img
+        src={user.profilePic || defaultImage}
+        alt="profile"
+        height="200px"
+        width="200px"
+      />
+      <h2>@{user.username}'s profile</h2>
+      <h2>Posts</h2>
       {posts.map(function (post) {
         return (
           <div key={post._id}>
+            <hr></hr>
             <p>{post.ticker}</p>
             <p>{post.content}</p>
             <p>{post.date}</p>
+            <hr></hr>
           </div>
         );
       })}

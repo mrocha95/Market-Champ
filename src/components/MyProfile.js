@@ -10,6 +10,8 @@ const MyProfile = () => {
 
   const navigate = useNavigate();
 
+  const profilePicture = localStorage.getItem("profilePicture");
+
   React.useEffect(() => {
     let token = localStorage.getItem("token");
     if (!token) {
@@ -62,23 +64,28 @@ const MyProfile = () => {
   user && console.log(user._id);
 
   return user ? (
-    <div>
-      {localStorage.getItem("profilePicture") ? (
-        <img src={user.profilePic} height="200px" alt="profile" />
-      ) : (
-        <img src={defaultImage} height="200px" alt="profile" />
-      )}
+    <div className="my-profile">
+      <img
+        src={profilePicture === "undefined" ? defaultImage : profilePicture}
+        alt="profile"
+        height="200px"
+        width="200px"
+        className="roundImage"
+      />
 
-      <h2>{user.username}'s Profile</h2>
+      <h2>My Profile</h2>
+      <h2>@{user.username}</h2>
       <button onClick={deleteUser}>Delete Account</button>
       <h3>Posts</h3>
       {posts.map(function (post) {
         return (
           <div key={post._id}>
+            <hr></hr>
             <p>{post.ticker}</p>
             <p>{post.content}</p>
             <p>{post.date}</p>
             <button onClick={() => deletePost(post._id)}>Delete Post</button>
+            <hr></hr>
           </div>
         );
       })}

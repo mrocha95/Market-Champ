@@ -12,6 +12,7 @@ import ViewProfile from "./components/ViewProfile";
 import MyProfile from "./components/MyProfile";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 
 function App() {
@@ -37,21 +38,26 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar search={search} />
+      <div className="main">
+        <Navbar search={search} />
 
-      {/* {input && <StockChart ticker={input} />} */}
+        {/* {input && <StockChart ticker={input} />} */}
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/stockchart/:input" element={<StockChart />} />
-        <Route path="/view-profile/:userId" element={<ViewProfile />} />
-        <Route path="/my-profile" element={<MyProfile />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/stockchart/:input" element={<StockChart />} />
+          <Route path="/view-profile/:userId" element={<ViewProfile />} />
+          <Route path="/my-profile" element={<MyProfile />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </div>
+      <div className="bottom">
+        <Footer />
+      </div>
     </div>
   );
 }

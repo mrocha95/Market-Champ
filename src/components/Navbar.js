@@ -25,7 +25,9 @@ function Navbar(props) {
     navigate("/");
   };
 
-  console.log(localStorage.getItem("token") ? "yes" : "no");
+  // console.log(localStorage.getItem("token") ? "yes" : "no");
+
+  console.log(profilePicture);
 
   return (
     <nav className="navbar">
@@ -47,16 +49,31 @@ function Navbar(props) {
         {token && (
           <Link to="/my-profile">
             <img
-              src={profilePicture || defaultImage}
+              src={
+                profilePicture === "undefined" ? defaultImage : profilePicture
+              }
               alt="profile"
               height="50px"
               width="50px"
+              className="roundImage"
             />
           </Link>
         )}
         {token && <button onClick={logOut}>Log Out</button>}
-        {!token && <Link to="/login">Log In</Link>}
-        {!token && <Link to="/signup">Sign Up</Link>}
+        {!token && (
+          <button>
+            <Link to="/login" className="button">
+              Log In
+            </Link>
+          </button>
+        )}
+        {!token && (
+          <button>
+            <Link to="/signup" className="button">
+              Sign Up
+            </Link>
+          </button>
+        )}
       </div>
     </nav>
   );

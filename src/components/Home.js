@@ -4,10 +4,25 @@ import { Routes, Route, Link, useSearchParams } from "react-router-dom";
 import wallSt from "../assets/wallStreet.jpg";
 
 function Home(props) {
+  const token = localStorage.getItem("token");
+
   return (
-    <div className="Home">
-      <h1>Engage with your favorite stocks</h1>
-      <img src={wallSt} alt="WallSt" width="500px" />
+    <div className="home">
+      <div className="home-left">
+        <h1>Join our community of champs</h1>
+        <p>Get the latest market data from all US stock exchanges</p>
+
+        {!token && (
+          <button>
+            <Link to="/signup" className="button">
+              Sign Up
+            </Link>
+          </button>
+        )}
+      </div>
+      <div className="home-right">
+        <img src={wallSt} alt="WallSt" width="600vw" />
+      </div>
     </div>
   );
 }
