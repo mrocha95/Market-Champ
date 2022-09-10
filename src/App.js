@@ -52,11 +52,9 @@ function App() {
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/footer" element={<Footer />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
-      </div>
-      <div className="bottom">
-        <Footer />
       </div>
     </div>
   );

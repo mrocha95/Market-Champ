@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Routes, Route, Link, useSearchParams } from "react-router-dom";
+import Footer from "./Footer";
 
 function About() {
   return (
@@ -10,6 +11,9 @@ function About() {
         MarketChamp combines the social and technical aspects of stock trading
         through its community.
       </p>
+      <div className="bottom">
+        <Footer />
+      </div>
     </div>
   );
 }

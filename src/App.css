@@ -44,10 +44,11 @@
   justify-content: space-around; */
 }
 
-/* .bottom {
-  flex-grow:1;
-  justify-content: flex-end;
-} */
+.bottom {
+  width:100%;
+  position: absolute;
+  bottom: 0%;
+}
 
 .navbar {
   background-color: #076AE0;
@@ -165,8 +166,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* position: absolute;
-  bottom: 0%; */
+  
 }
 
 footer > div > a {
@@ -306,3 +306,4 @@ footer > small {
   margin-top: 10px;
   border-radius: 50%;
 }
+

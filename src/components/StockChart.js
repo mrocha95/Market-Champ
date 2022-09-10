@@ -21,6 +21,7 @@ function StockChart(props) {
 
   const displayData = async () => {
     let response = await get(`/data/${params.input}/${timespan}`);
+    console.log(response);
     // setData(response.data.results);
     setTicker(response.data.ticker);
     setCurrentPrice(response.data.results[response.data.results.length - 1].c);
