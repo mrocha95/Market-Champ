@@ -7,6 +7,9 @@ import Footer from "./Footer";
 function Home(props) {
   const token = localStorage.getItem("token");
 
+  let timeout;
+  clearInterval(timeout);
+
   return (
     <div className="top">
       <div className="home">

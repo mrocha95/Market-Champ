@@ -253,12 +253,32 @@ footer > small {
 }
 
 .stock-chart {
-  margin:30px;
+  margin: 0 10vw;
+}
+
+.stock-name {
+  margin: 5px 18px;
+  font-size: 14px;
+}
+
+h1 {
+  margin: 5px 18px;
+  /* margin-top: 0px; */
 }
 
 .stock-chart > h1 > span {
   font-weight: normal;
 }
+
+.stock-chart > h1 > .price-change {
+  font-size: 20px;
+  margin: 10px;
+  /* font-weight: bold; */
+}
+
+/* .stock-chart > h2 > {
+  color: red;
+} */
 
 .button-container {
   /* width: 100vw; */

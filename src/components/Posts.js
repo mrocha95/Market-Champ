@@ -37,7 +37,6 @@ function Posts(props) {
   const getComments = async () => {
     // console.log(props.ticker);
     let response = await get(`/posts/ticker-posts/${props.ticker}`);
-    console.log(response.data);
     setComments(response.data);
   };
 
