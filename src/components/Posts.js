@@ -24,10 +24,8 @@ function Posts(props) {
           content: content,
           date: new Date().toLocaleString(),
         });
-        // console.log(r);
         setContent("");
         getComments();
-        // navigate(`/stockchart/${props.ticker}`);
       }
     } catch (err) {
       setStatus("Something went wrong");
@@ -35,7 +33,6 @@ function Posts(props) {
   };
 
   const getComments = async () => {
-    // console.log(props.ticker);
     let response = await get(`/posts/ticker-posts/${props.ticker}`);
     setComments(response.data);
   };
@@ -52,7 +49,6 @@ function Posts(props) {
 
       {localStorage.length !== 0 && (
         <form onSubmit={create}>
-          {/* <label>Create your post</label> */}
           <textarea
             columns={60}
             rows={4}

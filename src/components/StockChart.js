@@ -15,7 +15,7 @@ function StockChart() {
   const [currentPrice, setCurrentPrice] = React.useState("");
   const [previousClose, setPreviousClose] = React.useState("");
   const [series, setSeries] = React.useState([{ data: [] }]);
-  const [timespan, setTimespan] = React.useState("6mo");
+  const [timespan, setTimespan] = React.useState("1d");
   const [slices, setSlices] = React.useState([0, 0]);
 
   const params = useParams();
@@ -23,17 +23,10 @@ function StockChart() {
   const displayData = async () => {
     let response = await get(`/data/${params.input}/${timespan}`);
     let response2 = await get(`/details/${params.input}`);
-    // console.log(response2.data.quoteResponse.result[0]);
 
     setName(response2.data.quoteResponse.result[0].longName);
 
     setTicker(response.data.chart.result[0].meta.symbol);
-    setCurrentPrice(
-      response.data.chart.result[0].meta.regularMarketPrice.toFixed(2)
-    );
-    setPreviousClose(
-      response.data.chart.result[0].meta.chartPreviousClose.toFixed(2)
-    );
 
     timespan === "1d" ? setSlices([6, 12]) : setSlices([0, 6]);
 
@@ -60,11 +53,9 @@ function StockChart() {
     ]);
   };
 
-  const stonksUrl = `/details/${params.input}`;
   async function getStonks() {
-    const response = await get(stonksUrl);
-    // console.log(response);
-    return response;
+    const response3 = await get(`/data/${params.input}/${timespan}`);
+    return response3;
   }
 
   useEffect(() => {
@@ -72,7 +63,12 @@ function StockChart() {
     async function getLatestPrice() {
       try {
         const data = await getStonks();
-        console.log(data);
+        setCurrentPrice(
+          data.data.chart.result[0].meta.regularMarketPrice.toFixed(2)
+        );
+        setPreviousClose(
+          data.data.chart.result[0].meta.chartPreviousClose.toFixed(2)
+        );
       } catch (err) {
         console.log(err);
       }

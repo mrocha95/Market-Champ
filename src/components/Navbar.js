@@ -3,14 +3,25 @@ import axios from "axios";
 import logo from "../assets/logo.png";
 import defaultImage from "../assets/defaultImage.png";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { get, post, remove } from "../services/service";
 
 function Navbar(props) {
   const [text, setText] = React.useState("");
+  const [foundQuotes, setFoundQuotes] = React.useState({
+    symbol: [],
+    shortname: [],
+  });
+  const [shortname, setShortname] = React.useState([]);
+  const [symbol, setSymbol] = React.useState([]);
 
   const navigate = useNavigate();
 
-  const sanitize = () => {
-    if (text) {
+  const sanitize = (ticker) => {
+    if (ticker) {
+      props.search(ticker);
+      setText("");
+      navigate(`/stockchart/${ticker}`);
+    } else if (text) {
       props.search(text);
       setText("");
       navigate(`/stockchart/${text}`);
@@ -25,9 +36,18 @@ function Navbar(props) {
     navigate("/");
   };
 
-  // console.log(localStorage.getItem("token") ? "yes" : "no");
-
-  console.log(profilePicture);
+  async function findStocks(input) {
+    setText(input);
+    if (input.length > 0) {
+      try {
+        const response = await get(`/search/${input}`);
+        setFoundQuotes(response.data.quotes);
+        return response;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
 
   return (
     <nav className="navbar">
@@ -36,22 +56,39 @@ function Navbar(props) {
       </Link>
 
       <div className="search">
-        <input
-          type="text"
-          placeholder="Search Ticker"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button onClick={sanitize}>Search</button>
+        <div className="search-inner">
+          <input
+            type="text"
+            placeholder="Search Ticker"
+            value={text}
+            onChange={(e) => findStocks(e.target.value)}
+          />
+          <button onClick={sanitize}>Search</button>
+        </div>
+        {text && (
+          <div className="dropdown">
+            {foundQuotes.length > 0 &&
+              foundQuotes.map((index) => {
+                return (
+                  <div
+                    className="dropdown-row"
+                    key={index.symbol}
+                    onClick={() => sanitize(index.symbol)}
+                  >
+                    <div style={{ fontWeight: "bold" }}>{index.symbol}</div>
+                    <div>{index.shortname}</div>
+                  </div>
+                );
+              })}
+          </div>
+        )}
       </div>
 
       <div className="log">
         {token && (
           <Link to="/my-profile">
             <img
-              src={
-                profilePicture === "undefined" ? defaultImage : profilePicture
-              }
+              src={profilePicture || defaultImage}
               alt="profile"
               height="50px"
               width="50px"

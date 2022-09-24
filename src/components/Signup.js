@@ -32,7 +32,6 @@ function Signup() {
           password: password,
           profilePic: imgUrl,
         });
-        console.log(response);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", response.data.username);
         navigate("/");

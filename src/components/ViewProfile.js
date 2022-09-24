@@ -19,7 +19,6 @@ const ViewProfile = () => {
   const fetchUser = async () => {
     try {
       const response = await get(`/users/user-profile/${params.userId}`);
-      console.log(response.data);
       setUser(response.data);
     } catch (err) {
       setStatus(err.message);
@@ -29,7 +28,6 @@ const ViewProfile = () => {
   const fetchPosts = async () => {
     try {
       const response = await get(`/posts/user-posts/${params.userId}`);
-      console.log(response.data);
       setPosts(response.data);
     } catch (err) {
       setStatus(err.message);

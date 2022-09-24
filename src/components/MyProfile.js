@@ -24,7 +24,6 @@ const MyProfile = () => {
   const fetchUser = async () => {
     try {
       const response = await get(`/users/my-profile`);
-      //   console.log(response);
       setUser(response.data);
     } catch (err) {
       setStatus(err.message);
@@ -34,7 +33,6 @@ const MyProfile = () => {
   const fetchPosts = async () => {
     try {
       const response = await get(`/posts/my-posts`);
-      console.log(response.data);
       setPosts(response.data);
     } catch (err) {
       setStatus(err.message);
@@ -44,7 +42,6 @@ const MyProfile = () => {
   const deletePost = async (id) => {
     try {
       const response = await remove(`/posts/delete-post/${id}`);
-      //   console.log(response.data);
       fetchPosts();
     } catch (err) {
       setStatus(err.message);
@@ -54,19 +51,17 @@ const MyProfile = () => {
   const deleteUser = async () => {
     try {
       const response = await remove(`/users/delete-user/${user._id}`);
-      //   console.log(response.data);
       localStorage.clear();
       navigate("/");
     } catch (err) {
       setStatus(err.message);
     }
   };
-  user && console.log(user._id);
 
   return user ? (
     <div className="my-profile">
       <img
-        src={profilePicture === "undefined" ? defaultImage : profilePicture}
+        src={profilePicture || defaultImage}
         alt="profile"
         height="200px"
         width="200px"
